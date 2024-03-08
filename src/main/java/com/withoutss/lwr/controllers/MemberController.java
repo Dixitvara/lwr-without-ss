@@ -1,9 +1,10 @@
 package com.withoutss.lwr.controllers;
 
-import com.withoutss.lwr.dto.SignIn;
-import com.withoutss.lwr.dto.SignUp;
+import com.withoutss.lwr.entities.Complaint;
 import com.withoutss.lwr.entities.Member;
+import com.withoutss.lwr.services.ComplaintService;
 import com.withoutss.lwr.services.MemberService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private ComplaintService complaintService;
 
     @PostMapping("/signup")
     public ResponseEntity<String> register(@RequestBody Member request){
@@ -23,6 +26,12 @@ public class MemberController {
     @PostMapping("/signin")
     public ResponseEntity<String> login(@RequestBody Member request){
         return ResponseEntity.ok(memberService.signIn(request));
+    }
+
+    @PostMapping("/register-complaint")
+    public ResponseEntity<String> complaint(@RequestBody Complaint complaint)
+    {
+        return ResponseEntity.ok(complaintService.registerComplaint(complaint));
     }
 
 }

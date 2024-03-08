@@ -3,8 +3,12 @@ package com.withoutss.lwr.services.impl;
 import com.withoutss.lwr.entities.Member;
 import com.withoutss.lwr.repositories.MemberRepository;
 import com.withoutss.lwr.services.MemberService;
+import com.withoutss.lwr.utils.Utils;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -12,29 +16,33 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private HttpSession session;
 
     @Override
     public String signUp(Member member) {
         var email = memberRepository.findByEmail(member.getEmail());
         if (email == null) {
             memberRepository.save(member);
-            return "Registered successfully!";
+            return "Registered Successfully";
         } else {
-            return "Email already exists!";
+            return "Internal server error";
         }
     }
 
     @Override
     public String signIn(Member member) {
+        var record = memberRepository.findByEmailAndPassword(member.getEmail(), member.getPassword());
         try {
-            var record = memberRepository.findByEmailAndPassword(member.getEmail(), member.getPassword());
             if (record.getEmail().equals(member.getEmail()) && record.getPassword().equals(member.getPassword())) {
-                return "Login Successfully!";
+                session.setAttribute("userId", record.getId());
+                return "Login Successfully";
             }
         } catch (Exception e) {
-            System.out.println("Invalid credentials!");
+            log.error(String.valueOf(e));
+            System.out.println("Invalid credentials");
         }
-        return "Invalid credentials";
+        return "Invalid credentials!";
     }
 
 }
