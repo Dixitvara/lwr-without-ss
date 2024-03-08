@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ComplaintService {
     String registerComplaint(Complaint complaint);
-    List<Complaint> getUserComplaints(long id);
+    List<Complaint> getUserComplaints();
 }

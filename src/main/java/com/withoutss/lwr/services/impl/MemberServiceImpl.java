@@ -3,12 +3,9 @@ package com.withoutss.lwr.services.impl;
 import com.withoutss.lwr.entities.Member;
 import com.withoutss.lwr.repositories.MemberRepository;
 import com.withoutss.lwr.services.MemberService;
-import com.withoutss.lwr.utils.Utils;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -22,12 +19,15 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public String signUp(Member member) {
         var email = memberRepository.findByEmail(member.getEmail());
-        if (email == null) {
-            memberRepository.save(member);
-            return "Registered Successfully";
-        } else {
-            return "Internal server error";
+        try {
+            if (email == null) {
+                memberRepository.save(member);
+                return "Registered Successfully";
+            }
+        } catch (Exception e) {
+            System.out.println("Internal server error");
         }
+        return "Internal Server Error!";
     }
 
     @Override

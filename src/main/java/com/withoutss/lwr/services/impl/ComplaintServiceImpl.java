@@ -42,8 +42,8 @@ public class ComplaintServiceImpl implements ComplaintService {
     }
 
     @Override
-    public List<Complaint> getUserComplaints(long id) {
-        long userId = (long) session.getAttribute("userId");
+    public List<Complaint> getUserComplaints() {
+        Long fkMemId = (long) session.getAttribute("userId");
         return complaintRepository.findAll();
     }
 }

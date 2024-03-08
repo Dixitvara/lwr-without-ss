@@ -4,13 +4,12 @@ import com.withoutss.lwr.entities.Complaint;
 import com.withoutss.lwr.services.ComplaintService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@CrossOrigin
 @RequestMapping("api/v1/complaint")
 public class ComplaintController {
     @Autowired
@@ -23,8 +22,8 @@ public class ComplaintController {
     }
 
     @GetMapping("/view-my-complaints")
-    public List<Complaint> getComplaint(long id)
+    public List<Complaint> getComplaint()
     {
-        return complaintService.getUserComplaints(id);
+        return complaintService.getUserComplaints();
     }
 }
