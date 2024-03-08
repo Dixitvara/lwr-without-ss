@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ComplaintServiceImpl implements ComplaintService {
     @Autowired
@@ -37,6 +39,11 @@ public class ComplaintServiceImpl implements ComplaintService {
         } else {
             return "Internal server error";
         }
+    }
 
+    @Override
+    public List<Complaint> getUserComplaints(long id) {
+        long userId = (long) session.getAttribute("userId");
+        return complaintRepository.findAll();
     }
 }

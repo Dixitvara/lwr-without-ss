@@ -28,10 +28,4 @@ public class MemberController {
         return ResponseEntity.ok(memberService.signIn(request));
     }
 
-    @PostMapping("/register-complaint")
-    public ResponseEntity<String> complaint(@RequestBody Complaint complaint)
-    {
-        return ResponseEntity.ok(complaintService.registerComplaint(complaint));
-    }
-
 }
