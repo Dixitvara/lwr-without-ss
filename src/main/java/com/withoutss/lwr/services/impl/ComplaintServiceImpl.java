@@ -8,9 +8,13 @@ import com.withoutss.lwr.services.ComplaintService;
 import com.withoutss.lwr.utils.Utils;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -48,4 +52,17 @@ public class ComplaintServiceImpl implements ComplaintService {
         Long fkMemId = (long) session.getAttribute("userId");
         return complaintRepository.findAll();
     }
+
+    @Override
+    public List<Complaint> getAllComplaints() {
+        return complaintRepository.findAll();
+    }
+
+    @Override
+    public Boolean deleteComplaint(Long compId) {
+        complaintRepository.findById(compId).orElseThrow(() -> new RuntimeException("complaint is not exists with complaint id :" + compId));
+        complaintRepository.deleteById(compId);
+        return true;
+    }
+
 }

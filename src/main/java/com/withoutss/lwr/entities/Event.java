@@ -25,6 +25,6 @@ public class Event {
     private Date endDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_mem_id")
+    @JoinColumn(name = "fkmemid")
     private Member member;
 }

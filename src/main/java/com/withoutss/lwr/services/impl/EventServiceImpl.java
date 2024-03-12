@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EventServiceImpl implements EventService {
     @Autowired
@@ -38,4 +40,8 @@ public class EventServiceImpl implements EventService {
         return false;
     }
 
+    @Override
+    public List<Event> getMyEvents(Long fkId) {
+        return eventRepository.findAllByFkMemId(fkId);
+    }
 }

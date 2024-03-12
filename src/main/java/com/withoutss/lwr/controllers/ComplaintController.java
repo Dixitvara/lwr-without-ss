@@ -28,8 +28,24 @@ public class ComplaintController {
     }
 
     @GetMapping("/view-my-complaints")
-    public List<Complaint> getComplaint() {
+    public List<Complaint> getMyComplaint() {
         return complaintService.getUserComplaints();
+    }
+
+    @GetMapping("/view-complaints")
+    public List<Complaint> getAllComplaints()
+    {
+        return complaintService.getAllComplaints();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteComplaint(@PathVariable("id") Long compId)
+    {
+        if(complaintService.deleteComplaint(compId))
+        {
+            return Utils.getResponseEntity("Complaint deleted successfully", HttpStatus.OK);
+        }
+        return Utils.getResponseEntity("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

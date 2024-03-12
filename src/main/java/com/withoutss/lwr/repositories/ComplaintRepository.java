@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
-//    @Query("SELECT u FROM Complaint u WHERE u.fk_mem_id LIKE :fkMemId")
-//    List<Complaint> findAllByMember(Long fkMemId);
+    @Query(value = "SELECT * FROM Complaint u WHERE u.fk_mem_id LIKE :fkMemId", nativeQuery = true)
+    List<Complaint> findAllByFkMemId(Long fkMemId);
 
 }
