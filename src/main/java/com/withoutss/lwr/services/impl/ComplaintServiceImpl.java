@@ -24,21 +24,23 @@ public class ComplaintServiceImpl implements ComplaintService {
     private HttpSession session;
 
     @Override
-    public String registerComplaint(Complaint complaint) {
+    public Boolean registerComplaint(Complaint complaint) {
 
-        // getting the logged in user id
-        long id = (long) session.getAttribute("userId");
-        Member member = memberRepository.findById(id).orElse(null);
+        try {
+            // getting the logged in user id
+            long id = (long) session.getAttribute("userId");
+            Member member = memberRepository.findById(id).orElse(null);
 
-        if (member != null) {
-            complaint.setMember(member);
-            complaintRepository.save(complaint);
-
-            // saving the complaint to the database
-            return "Complaint registered successfully";
-        } else {
-            return "Internal server error";
+            if (member != null) {
+                complaint.setMember(member);
+                // saving the complaint to the database
+                complaintRepository.save(complaint);
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
+        return false;
     }
 
     @Override

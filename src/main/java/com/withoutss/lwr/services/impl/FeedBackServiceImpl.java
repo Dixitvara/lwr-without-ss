@@ -3,7 +3,10 @@ package com.withoutss.lwr.services.impl;
 import com.withoutss.lwr.entities.Feedback;
 import com.withoutss.lwr.repositories.FeedbackRepository;
 import com.withoutss.lwr.services.FeedBackService;
+import com.withoutss.lwr.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,13 +15,14 @@ public class FeedBackServiceImpl implements FeedBackService {
     private FeedbackRepository feedbackRepository;
 
     @Override
-    public String submitFeedback(Feedback feedBack) {
+    public Boolean submitFeedback(Feedback feedBack) {
         try {
             feedbackRepository.save(feedBack);
-            return "Feedback successfully submitted!";
+            return true;
         } catch (Exception e) {
             System.out.println("Internal server error in feedback form");
         }
-        return "Internal server error(FeedBack)";
+        return false;
     }
+
 }
