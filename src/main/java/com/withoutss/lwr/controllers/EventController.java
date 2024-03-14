@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -33,9 +34,19 @@ public class EventController {
     }
 
     @GetMapping("/view-my-events")
-    public List<Event> viewMyEvents()
-    {
-        Long id = (long)session.getAttribute("userId");
+    public List<Event> viewMyEvents() {
+        Long id = (long) session.getAttribute("userId");
         return eventService.getMyEvents(id);
     }
+
+    // problem in this api
+
+//    @PostMapping("/checkBookings")
+//    public ResponseEntity<String> checkDate(@RequestParam LocalDate date, @RequestParam LocalDate date2) {
+//        if (eventService.checkDate(date, date2))
+//            return new ResponseEntity<>("Bookings available", HttpStatus.OK);
+//        if (!eventService.checkDate(date, date2))
+//            return new ResponseEntity<>("Bookings not available", HttpStatus.BAD_REQUEST);
+//        return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }

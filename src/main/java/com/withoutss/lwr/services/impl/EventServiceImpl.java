@@ -5,13 +5,11 @@ import com.withoutss.lwr.entities.Member;
 import com.withoutss.lwr.repositories.EventRepository;
 import com.withoutss.lwr.repositories.MemberRepository;
 import com.withoutss.lwr.services.EventService;
-import com.withoutss.lwr.utils.Utils;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -44,4 +42,14 @@ public class EventServiceImpl implements EventService {
     public List<Event> getMyEvents(Long fkId) {
         return eventRepository.findAllByFkMemId(fkId);
     }
+
+    // method for checking date is available in DB or not
+//    @Override
+//    public Boolean checkDate(LocalDate date1, LocalDate date2) {
+//        var record = eventRepository.findEventByDates(date1, date2);
+//        if (record > 0)
+//            return false;
+////        if (record != null)
+//        return true;
+//    }
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,9 +21,9 @@ public class Event {
     @Column(name = "func_type")
     private String funcType;
     @Column(name = "date_from")
-    private Date dateFrom;
+    private LocalDate dateFrom;
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fkmemid")
