@@ -17,13 +17,16 @@ public class CheckInOut {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true)
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private long mobile;
 
+    @Column(nullable = false)
     private String wing;
 
+    @Column(nullable = false)
     private String flat;
 
     @Column(name = "check_in")

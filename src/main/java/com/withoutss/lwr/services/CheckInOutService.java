@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CheckInOutService {
     Boolean checkInGuest(CheckInOut data);
-    Boolean checkOutGuest(String name);
+    Boolean checkOutGuest(Long id);
     List<CheckInOut> findCheckedInGuest();
     List<CheckInOut> findAllGuest();
 }

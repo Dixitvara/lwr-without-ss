@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface CheckInOutRepository extends JpaRepository<CheckInOut, Long> {
-    CheckInOut findByName(String name);
 
     @Query(value = "SELECT * FROM check_in_out WHERE status LIKE 'CHECKED_IN'", nativeQuery = true)
     List<CheckInOut> findAllByStatus();

@@ -27,10 +27,10 @@ public class CheckInOutController {
         }
     }
 
-    @PatchMapping("/check-out/{name}")
-    public ResponseEntity<String> checkOut(@PathVariable String name)
+    @PatchMapping("/check-out/{id}")
+    public ResponseEntity<String> checkOut(@PathVariable long id)
     {
-        if(checkInOutService.checkOutGuest(name))
+        if(checkInOutService.checkOutGuest(id))
         {
             return Utils.getResponseEntity("Guest user checked out!", HttpStatus.OK);
         }

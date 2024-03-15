@@ -25,8 +25,8 @@ public class CheckInOutServiceImpl implements CheckInOutService {
     }
 
     @Override
-    public Boolean checkOutGuest(String name) {
-        CheckInOut userRecord = checkInOutRepository.findByName(name);
+    public Boolean checkOutGuest(Long id) {
+        CheckInOut userRecord = checkInOutRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
         userRecord.setCheckOut(LocalDateTime.now());
         userRecord.setStatus(CheckedStatus.CHECKED_OUT);
         checkInOutRepository.save(userRecord);
