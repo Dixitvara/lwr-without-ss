@@ -8,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("api/v1/guest-user")
 public class CheckInOutController {
     @Autowired
@@ -21,7 +24,6 @@ public class CheckInOutController {
         } else {
             return Utils.getResponseEntity("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
     @PatchMapping("/check-out/{name}")
     public ResponseEntity<String> checkOut(@PathVariable String name)
@@ -31,5 +33,11 @@ public class CheckInOutController {
             return Utils.getResponseEntity("Guest user checked out!", HttpStatus.OK);
         }
         return Utils.getResponseEntity("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/view-checkIn-guest")
+    public List<CheckInOut> viewCheckedInGuest()
+    {
+        return checkInOutService.findCheckedInGuest();
     }
 }
