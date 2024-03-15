@@ -34,6 +34,11 @@ public class CheckInOutServiceImpl implements CheckInOutService {
     }
 
     @Override
+    public List<CheckInOut> findAllGuest() {
+        return checkInOutRepository.findAll();
+    }
+
+    @Override
     public List<CheckInOut> findCheckedInGuest() {
         return checkInOutRepository.findAllByStatus();
     }

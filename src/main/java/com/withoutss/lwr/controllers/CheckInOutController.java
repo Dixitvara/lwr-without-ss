@@ -14,6 +14,7 @@ import java.util.List;
 @CrossOrigin("http://localhost:3000")
 @RequestMapping("api/v1/guest-user")
 public class CheckInOutController {
+
     @Autowired
     private CheckInOutService checkInOutService;
 
@@ -25,6 +26,7 @@ public class CheckInOutController {
             return Utils.getResponseEntity("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @PatchMapping("/check-out/{name}")
     public ResponseEntity<String> checkOut(@PathVariable String name)
     {
@@ -40,4 +42,11 @@ public class CheckInOutController {
     {
         return checkInOutService.findCheckedInGuest();
     }
+
+    @GetMapping("/view-guests")
+    public List<CheckInOut> viewAllGuest()
+    {
+        return checkInOutService.findAllGuest();
+    }
+
 }

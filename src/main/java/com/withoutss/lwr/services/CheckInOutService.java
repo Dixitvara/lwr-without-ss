@@ -10,4 +10,5 @@ public interface CheckInOutService {
     Boolean checkInGuest(CheckInOut data);
     Boolean checkOutGuest(String name);
     List<CheckInOut> findCheckedInGuest();
+    List<CheckInOut> findAllGuest();
 }
