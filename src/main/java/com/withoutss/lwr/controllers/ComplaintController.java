@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
-@RequestMapping("api/v1/complaint")
+@CrossOrigin("http://localhost:3000")
+@RequestMapping("/lwresident/v1/complaint")
 public class ComplaintController {
 
     @Autowired
@@ -32,6 +32,7 @@ public class ComplaintController {
         return complaintService.getUserComplaints();
     }
 
+    // secretory api for view all complaints
     @GetMapping("/view-complaints")
     public List<Complaint> getAllComplaints()
     {

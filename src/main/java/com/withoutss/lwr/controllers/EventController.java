@@ -15,7 +15,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/events")
+@CrossOrigin("http://localhost:3000")
+@RequestMapping("/lwresident/v1/events")
 public class EventController {
     @Autowired
     private MemberRepository memberRepository;

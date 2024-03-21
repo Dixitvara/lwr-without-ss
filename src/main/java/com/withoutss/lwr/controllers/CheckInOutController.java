@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-@RequestMapping("api/v1/guest-user")
+@RequestMapping("lwresident/v1/guest-user")
 public class CheckInOutController {
 
     @Autowired

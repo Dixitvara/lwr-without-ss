@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/lwresident/v1/auth")
 public class MemberController {
 
     @Autowired
     private MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> register(@RequestBody Member request){
+    public ResponseEntity<String> register(@ModelAttribute Member request){
         if(memberService.signUp(request))
         {
             return Utils.getResponseEntity("Registered successfully!", HttpStatus.OK);
@@ -28,7 +28,7 @@ public class MemberController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> login(@RequestBody Member request){
+    public ResponseEntity<String> login(@ModelAttribute Member request){
         if(memberService.signIn(request))
         {
             return Utils.getResponseEntity("Login successfully", HttpStatus.OK);

@@ -1,6 +1,7 @@
 package com.withoutss.lwr.services.impl;
 
 import com.withoutss.lwr.entities.Member;
+import com.withoutss.lwr.entities.Role;
 import com.withoutss.lwr.repositories.MemberRepository;
 import com.withoutss.lwr.services.MemberService;
 import com.withoutss.lwr.utils.Utils;
@@ -27,8 +28,11 @@ public class MemberServiceImpl implements MemberService {
                 memberRepository.save(member);
                 return true;
             }
+            else{
+                log.error("User already exists!");
+            }
         } catch (Exception e) {
-            System.out.println("Internal server error");
+            log.error("Internal server error" + e);
         }
         return false;
     }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-@RequestMapping("api/v1")
+@RequestMapping("/lwresident/v1")
 public class FeedbackController {
     @Autowired
     private FeedBackService feedBackService;

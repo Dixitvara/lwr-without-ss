@@ -21,11 +21,11 @@ public class Member {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private long mobile;
+    private String mobile;
     @Column(nullable = false)
     private String wing;
     @Column(nullable = false)
-    private String flat;
+    private int flat;
     @Enumerated(EnumType.STRING)
     private Role role;
 }
