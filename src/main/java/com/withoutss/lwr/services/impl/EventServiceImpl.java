@@ -44,12 +44,12 @@ public class EventServiceImpl implements EventService {
     }
 
     // method for checking date is available in DB or not
-//    @Override
-//    public Boolean checkDate(LocalDate date1, LocalDate date2) {
-//        var record = eventRepository.findEventByDates(date1, date2);
-//        if (record > 0)
-//            return false;
-////        if (record != null)
-//        return true;
-//    }
+    @Override
+    public Boolean checkDate(LocalDate date1, LocalDate date2) {
+        var record = eventRepository.findEventByDates(date1, date2);
+        if (record > 0)
+            return false;
+//        if (record != null)
+        return true;
+    }
 }

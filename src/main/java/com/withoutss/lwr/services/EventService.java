@@ -10,5 +10,5 @@ public interface EventService {
     Boolean registerFunction(Event event);
     List<Event> getMyEvents(Long fkId);
     // event api
-//    Boolean checkDate(LocalDate date1, LocalDate date2);
+    Boolean checkDate(LocalDate date1, LocalDate date2);
 }
