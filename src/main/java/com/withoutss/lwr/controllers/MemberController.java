@@ -17,7 +17,7 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> register(@ModelAttribute Member request){
+    public ResponseEntity<String> register(@RequestBody Member request){
         if(memberService.signUp(request))
         {
             return Utils.getResponseEntity("Registered successfully!", HttpStatus.OK);
@@ -28,7 +28,7 @@ public class MemberController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> login(@ModelAttribute Member request){
+    public ResponseEntity<String> login(@RequestBody Member request){
         if(memberService.signIn(request))
         {
             return Utils.getResponseEntity("Login successfully", HttpStatus.OK);

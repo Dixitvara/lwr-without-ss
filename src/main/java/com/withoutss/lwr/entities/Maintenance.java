@@ -35,6 +35,9 @@ public class Maintenance {
     @Column(nullable = false)
     private double penalties;
 
+    @Column(nullable = false, name = "due_amount")
+    private double dueAmount;
+
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
     private Status status;

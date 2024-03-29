@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
+
     @Autowired
     private HttpSession session;
 

@@ -35,7 +35,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Scheduled(fixedRate = 5000)
     public Maintenance generateMaintenance() {
 
-        LocalDate generatedDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1);
+        LocalDate generateDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1);
         LocalDate dueDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1 + 19);
 
         Maintenance maintenance = new Maintenance();
@@ -44,6 +44,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         maintenance.setMonth(LocalDate.now().getMonth());
         maintenance.setPenalties(0.00);
         maintenance.setDueDate(dueDate);
+        maintenance.setDueAmount(1000);
         maintenance.setPaidDate(null);
         maintenance.setStatus(Status.UNPAID);
 
@@ -55,10 +56,9 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         return memberRepository.getAllId();
     }
 
-    public Boolean checkMaintenanceValue(String email) {
-        Maintenance maintenance = generateMaintenance();
+    public Maintenance checkMaintenanceValue(String email) {
         Member member = memberRepository.findByEmail(email);
-        return true;
+        return null;
     }
 
 }
