@@ -7,6 +7,7 @@ import com.withoutss.lwr.repositories.MemberRepository;
 import com.withoutss.lwr.services.EventService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -45,11 +46,12 @@ public class EventServiceImpl implements EventService {
 
     // method for checking date is available in DB or not
     @Override
-    public Boolean checkDate(LocalDate date1, LocalDate date2) {
+    public Event checkDate(LocalDate date1, LocalDate date2) {
         var record = eventRepository.findEventByDates(date1, date2);
-        if (record > 0)
-            return false;
-//        if (record != null)
-        return true;
+
+        if (record == null)
+            return null;
+        else
+            return record;
     }
 }

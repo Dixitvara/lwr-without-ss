@@ -16,6 +16,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findAllByFkMemId(@Param("memId")Long FkMemId);
 
     // query for event checking for specific date
-    @Query(value = "SELECT * FROM Event WHERE date_from >= :date AND end_date <= :date2", nativeQuery = true)
-    Integer findEventByDates(LocalDate date1, LocalDate date2);
+    @Query(value = "SELECT * FROM Event WHERE date_from ", nativeQuery = true)
+    Event findEventByDates(LocalDate date1, LocalDate date2);
 }

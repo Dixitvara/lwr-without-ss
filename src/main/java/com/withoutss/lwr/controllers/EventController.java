@@ -43,11 +43,7 @@ public class EventController {
     // problem in this api
 
     @PostMapping("/checkBookings")
-    public ResponseEntity<String> checkDate(@RequestParam LocalDate date, @RequestParam LocalDate date2) {
-        if (eventService.checkDate(date, date2))
-            return new ResponseEntity<>("Bookings available", HttpStatus.OK);
-        if (!eventService.checkDate(date, date2))
-            return new ResponseEntity<>("Bookings not available", HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+    public Event checkDate(@RequestParam LocalDate date1, @RequestParam LocalDate date2) {
+        return eventService.checkDate(date1, date2);
     }
 }
